@@ -6,7 +6,10 @@ import {signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
 
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+import Button from "../../components/button/button.component";
+import FormInput from "../../components/form-input/form-input.component";
 
+import './sign-in.styles.scss';
 
 const SignIn = () => {
 
@@ -31,9 +34,17 @@ const SignIn = () => {
     }
 
     return (
-        <div>
-            <h1>I am the sign in page!</h1>
-            <button onClick={logGooglePopupUser}>Sign in with Google Popup</button>
+        <div className="sign-in-container">
+            <div>
+                <h2>I already have an account</h2>
+                <span>Sign in with your email and password</span>
+                <form>
+                    <FormInput />
+                    <FormInput />
+                    <Button>Sign in</Button>
+                    <Button buttonType='google' onClick={logGooglePopupUser}>Sign in with Google</Button>
+                </form>
+            </div>
             <SignUpForm />
         </div>
     );
