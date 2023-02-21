@@ -5,7 +5,9 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
 } from 'firebase/auth';
 import {
     getFirestore,
@@ -53,7 +55,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
     const userDocRef = doc(db, 'users', userAuth.uid);
     console.log(userDocRef);
 
-    // getting the document's data "snapshot"
+    // getting the document's data / "snapshot"
     const userSnapshot = await getDoc(userDocRef);
     console.log(userSnapshot);
     console.log(userSnapshot.exists());
@@ -93,3 +95,10 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
     return await signInWithEmailAndPassword(auth, email, password);
 }
+
+export const signOutUser = async () => await signOut(auth);
+
+// listeners accept a mandetory callback to do something when an event occurs (like a callback in .addEventListener)
+// for the onAuthStateChange listener function, the event is mostly authentication states
+// returns an unsubscribe variable to stop the listener; (prevents memory leaks; discard function after use)
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
