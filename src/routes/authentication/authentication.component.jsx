@@ -4,11 +4,10 @@
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 import SignInForm from "../../components/sign-in/sign-in-form.component";
 
-import './authentication.styles.scss';
+import { Authentication } from "./authentication.styles.jsx";
 
 const SignIn = () => {
-
-    /*
+  /*
     we figured when we leave the page/redirect to another page, the whole instance of our page gets discarded and we lose all auth states
     called in getRedirectResult() method to aid against this problem - to help retain the state and track app auth state
     useEffect(() => {
@@ -23,12 +22,12 @@ const SignIn = () => {
     }, []);
     */
 
-    return (
-        <div className="authentication-container">
-            <SignInForm />
-            <SignUpForm />
-        </div>
-    );
-}
+  return (
+    <Authentication>
+      <SignInForm />
+      <SignUpForm />
+    </Authentication>
+  );
+};
 
 export default SignIn;

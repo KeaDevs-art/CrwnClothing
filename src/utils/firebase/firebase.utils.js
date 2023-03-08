@@ -69,7 +69,6 @@ export const addCollectionAndDocuments = async (
   });
 
   await batch.commit();
-  console.log("done!");
 };
 
 export const getCategoriesAndDocuments = async () => {
@@ -94,12 +93,9 @@ export const createUserDocumentFromAuth = async (
 
   // creating/retrieving a document reference using the doc(database, collection, unique identifier) method
   const userDocRef = doc(db, "users", userAuth.uid);
-  console.log(userDocRef);
 
   // getting the document's data / "snapshot"
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
-  console.log(userSnapshot.exists());
 
   // leveraging the .exists() method to check if the document reference and its data exist
   // if docRef exists return object; else create document in database
